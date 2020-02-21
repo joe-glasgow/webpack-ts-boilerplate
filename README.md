@@ -3,7 +3,7 @@
 A boiler plate repository for Webpack using typescript.
 Unashamedly inspired/appropriated/disassembled from @jhnns and his great talk during FrontEnd Love conference (Feb 19th 2020).
 
-❌ no linting in WebPack (use your idea and commit hooks)
+❌ no linting in WebPack (use your IDE and commit hooks)
 
 ## Set up
 
