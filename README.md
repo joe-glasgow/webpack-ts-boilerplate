@@ -13,6 +13,14 @@ Unashamedly inspired/appropriated/disassembled from @jhnns and his great talk du
 
     npm run dev
     
+## Tests
+
+    npm run test
+    
+## Start
+
+    npm run start
+    
 ## Production
 
     npm run build
