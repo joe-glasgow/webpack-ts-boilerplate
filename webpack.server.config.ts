@@ -2,16 +2,12 @@
 import * as webpack from 'webpack';
 import webpackServer from './config/webpack.server';
 
-type WebpackEnv = {
-    mode?: webpack.Configuration['mode'];
-};
-
 interface CreateWebpackConfig {
-    (args: WebpackEnv): webpack.Configuration;
+    (): webpack.Configuration;
 }
 
-const createConfig: Partial<CreateWebpackConfig> = ({ mode = 'production' }: WebpackEnv = {}) => {
-    const isDev = mode === 'development';
+const createConfig: Partial<CreateWebpackConfig> = () => {
+    const isDev = process.env.NODE_ENV === 'development';
     return webpackServer(isDev);
 };
 

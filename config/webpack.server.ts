@@ -8,15 +8,29 @@ const webpackServer = (isDev: boolean) => ({
         server: './src/server.ts',
     },
     resolve: {
-        extensions: ['.ts', '.js'],
+        extensions: ['.tsx', '.ts', '.js', '.json'],
     },
     module: {
         rules: [
             {
-                test: /\.ts$/,
-                use: [
-                    'babel-loader',
-                ],
+                test: [/\.ts$/, /\.tsx$/],
+                loader: 'babel-loader',
+                options: {
+                    presets: [
+                        '@babel/typescript',
+                        '@babel/react',
+                        [
+                            '@babel/env',
+                            {
+                                modules: false,
+                                useBuiltIns: 'usage',
+                                corejs: 3,
+                            },
+                        ],
+                    ],
+                    plugins: ['babel-plugin-treat'],
+                    cacheDirectory: true,
+                },
             },
         ],
     },

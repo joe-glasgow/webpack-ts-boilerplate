@@ -7,8 +7,8 @@
     "build": "run-s build:*",
     "build:clean": "rimraf dist",
     "build:client": "webpack",
-    "build:server": "webpack --config webpack.server.config.ts --env.mode=production",
-    "dev": "nodemon --watch config/ --watch webpack.config.ts --watch package-lock.json --exec webpack-dev-server --hot --env.mode=development",
+    "build:server": "webpack --config webpack.server.config.ts",
+    "dev": "nodemon --watch config/ --watch webpack.config.ts --watch package-lock.json --exec NODE_ENV=development webpack-dev-server --hot",
     "poststart": "node dist/server.js",
     "start": "npm run build",
     "test": "jest --passWithNoTests"

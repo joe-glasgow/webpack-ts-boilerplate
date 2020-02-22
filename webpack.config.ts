@@ -5,20 +5,14 @@ import webpackDev from './config/webpack.dev';
 import webpackProd from './config/webpack.prod';
 import webpackCommon from './config/webpack.common';
 
-type WebpackEnv = {
-    mode?: webpack.Configuration['mode'];
-};
-
 interface CreateWebpackConfig {
-    (args: WebpackEnv): webpack.Configuration;
+    (): webpack.Configuration;
 }
 
-const createConfig: CreateWebpackConfig = ({ mode = 'production' }: WebpackEnv = {}) => {
-    const isDev = mode === 'development';
+const createConfig: CreateWebpackConfig = () => {
+    const isDev = process.env.NODE_ENV === 'development';
     // eslint-disable-next-line no-multi-assign
-    process.env.BROWSERSLIST_ENV = process.env.BABEL_ENV = isDev
-        ? 'development'
-        : 'production';
+    process.env.BROWSERSLIST_ENV = process.env.BABEL_ENV = (process.env.NODE_ENV || 'development');
     return merge(
         webpackCommon(isDev),
         isDev ? webpackDev : webpackProd,

@@ -6,7 +6,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 const webpackCommon = (isDev: boolean) => {
     const outputFilenamePattern = isDev
         ? '[name].js'
-        : '[name].[contenthash].js';
+        : '[name].[hash].js';
     const publicPath = '/';
 
     return {
