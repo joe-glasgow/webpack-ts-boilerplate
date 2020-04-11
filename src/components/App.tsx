@@ -1,10 +1,7 @@
 import { hot } from 'react-hot-loader/root.js';
 import React from 'react';
-import * as styles from './App.treat';
 
-const App: React.FC = () => <div
-    className={styles.root}
->
+const App: React.FC = () => <div>
     Hello World
 </div>;
 

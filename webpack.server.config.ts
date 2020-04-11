@@ -1,14 +1,16 @@
 // eslint-disable-next-line no-unused-vars
 import * as webpack from 'webpack';
-import webpackServer from './config/webpack.server';
+import clientConfig from './webpack.config';
 
 interface CreateWebpackConfig {
-    (): webpack.Configuration;
+    (dev?: boolean): webpack.Configuration[];
 }
 
-const createConfig: Partial<CreateWebpackConfig> = () => {
-    const isDev = process.env.NODE_ENV === 'development';
-    return webpackServer(isDev);
+const createConfig: any = (dev: boolean) => {
+    const isDev = dev || process.env.NODE_ENV === 'development';
+    return [
+        clientConfig(isDev),
+    ];
 };
 
 export default createConfig;

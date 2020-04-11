@@ -2,10 +2,13 @@ import path from 'path';
 import nodeExternals from 'webpack-node-externals';
 
 const webpackServer = (isDev: boolean) => ({
+    name: 'server',
     mode: isDev ? 'development' : 'production',
     target: 'node',
     entry: {
-        server: './src/server.ts',
+        server: [
+            path.resolve(__dirname, '../src/server/'),
+        ],
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js', '.json'],
@@ -28,15 +31,18 @@ const webpackServer = (isDev: boolean) => ({
                             },
                         ],
                     ],
-                    plugins: ['babel-plugin-treat'],
                     cacheDirectory: true,
+                    cacheCompression: process.env.NODE_ENV === 'production',
+                    compact: process.env.NODE_ENV === 'production',
                 },
             },
         ],
     },
     externals: [nodeExternals()],
     output: {
-        path: path.resolve(__dirname, '../dist'),
+        path: path.resolve('dist/server'),
+        filename: '[name].js',
+        publicPath: path.resolve('/static/'),
     },
 });
 
